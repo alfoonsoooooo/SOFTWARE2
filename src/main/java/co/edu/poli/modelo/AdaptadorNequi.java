@@ -8,5 +8,6 @@ public class AdaptadorNequi implements MetodoPago {
     @Override
     public String realizarPago(int valor) {
         return nequi.realizarTransferencia(valor);
+        
     }
 }
