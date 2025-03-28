@@ -158,6 +158,7 @@ public class ControladorCRUD {
         if(evaluacion.isSelected()){
             proveedor1.evaluacion(new Evaluacion());
         }
+        
         if (polientrega.isSelected()) {
             proveedor1.politicaEntrega(new PoliticaEntrega());
         }
