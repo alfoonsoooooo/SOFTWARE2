@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.controlador.controladorFx">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="7.0" prefHeight="36.0" prefWidth="183.0" text="Patrones Estructurales" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="bttPepsi" layoutX="245.0" layoutY="338.0" mnemonicParsing="false" onAction="#mostrarPepsi" text="Proveedor Pepsico" />
+      <Button fx:id="bttActualizarCliente" layoutX="54.0" layoutY="207.0" mnemonicParsing="false" onAction="#actulizarCliente" text="Actualizar" />
+      <Button fx:id="bttMostrarProducto" layoutX="248.0" layoutY="220.0" mnemonicParsing="false" onAction="#mostrarProducto" text="Mostrar Detalles" />
+      <Label layoutX="75.0" layoutY="52.0" text="Patron Facade">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="266.0" layoutY="52.0" text="Patron Proxy">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="275.0" text="Patron FlyWeight">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutX="208.0" layoutY="56.0" orientation="VERTICAL" prefHeight="482.0" prefWidth="6.0" />
+      <TextField fx:id="nombreCliente" layoutX="47.0" layoutY="115.0" promptText="Nombre; Roberto" />
+      <TextField fx:id="emailCliente" layoutX="47.0" layoutY="173.0" promptText=" Email: roberto@poli.com" />
+      <Label layoutX="47.0" layoutY="94.0" text="Ingrese Su Nombre;">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="151.0" text="Ingrese Su Email;">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutX="8.0" layoutY="248.0" prefWidth="200.0" />
+      <Button fx:id="bttMostrarCliente" layoutX="131.0" layoutY="207.0" mnemonicParsing="false" onAction="#mostrarCliente" text="Mostrar" />
+      <Label layoutX="24.0" layoutY="76.0" text="Cliente">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="259.0" text="Pedidos Cliente">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="bttRealizarPedido" layoutX="48.0" layoutY="329.0" mnemonicParsing="false" onAction="#realizarPedido" text="Realizar" />
+      <Button fx:id="bttMostrarPedidos" layoutX="125.0" layoutY="329.0" mnemonicParsing="false" onAction="#mostrarPedidos" text="Mostrar" />
+      <TextField fx:id="pedidoCliente" layoutX="47.0" layoutY="298.0" />
+      <Label layoutX="47.0" layoutY="277.0" text="Ingrese El Pedido">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutX="8.0" layoutY="368.0" prefWidth="200.0" />
+      <Label layoutX="24.0" layoutY="379.0" text="Metodos Pago Cliente">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="bttActivarMetodo" layoutX="48.0" layoutY="449.0" mnemonicParsing="false" onAction="#activarMetodo" text="Activar" />
+      <Button fx:id="bttMostrarMetodo" layoutX="125.0" layoutY="449.0" mnemonicParsing="false" onAction="#mostrarMetodo" text="Mostrar" />
+      <TextField fx:id="metodosCliente" layoutX="47.0" layoutY="418.0" />
+      <Label layoutX="47.0" layoutY="397.0" text="Ingrese El Metodo">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="bttBloquearMetodo" layoutX="86.0" layoutY="488.0" mnemonicParsing="false" onAction="#bloquearMetodo" text="Bloquear" />
+      <TextField fx:id="nombreUsuario" layoutX="228.0" layoutY="120.0" />
+      <TextField fx:id="rangoUsuario" layoutX="228.0" layoutY="178.0" />
+      <Label layoutX="228.0" layoutY="99.0" text="Ingrese Su Nombre;">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="229.0" layoutY="156.0" text="Ingrese Su Rango;">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutX="211.0" layoutY="266.0" prefHeight="3.0" prefWidth="176.0" />
+      <Button fx:id="bttCoca" layoutX="238.0" layoutY="302.0" mnemonicParsing="false" onAction="#mostrarCoca" text="Proveedor Coca-Cola" />
+      <TextArea fx:id="mostrarProductos" layoutX="221.0" layoutY="371.0" prefHeight="162.0" prefWidth="162.0" />
+   </children>
+</AnchorPane>
