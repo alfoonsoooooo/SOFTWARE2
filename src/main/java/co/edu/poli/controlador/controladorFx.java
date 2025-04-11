@@ -1,8 +1,5 @@
 package co.edu.poli.controlador;
 
-import javax.print.attribute.standard.JobHoldUntil;
-import javax.swing.JOptionPane;
-
 import co.edu.poli.modelo.PatronFacade.Cliente;
 import co.edu.poli.modelo.PatronFacade.ClienteFacade;
 import co.edu.poli.modelo.PatronFacade.MetodoPago;
@@ -16,6 +13,8 @@ import co.edu.poli.modelo.PatronProxy.ProductoProxy;
 import co.edu.poli.modelo.PatronProxy.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -25,94 +24,93 @@ public class controladorFx {
     private MetodoPago metodo = new MetodoPago();
     private Pedidos pedido = new Pedidos();
     private ClienteFacade cliente = new ClienteFacade(clientex, metodo, pedido);
-    @FXML
-    private Button bttActivarMetodo,bttActualizarCliente,bttBloquearMetodo,bttMostrarCliente,bttMostrarMetodo, bttMostrarPedidos,bttMostrarProducto,bttNose,bttRealizarPedido, bttPepsi, bttCoca;
 
     @FXML
-    private TextField emailCliente,metodosCliente,nombreCliente,nombreUsuario,pedidoCliente,rangoUsuario;
+    private Button bttActivarMetodo, bttActualizarCliente, bttBloquearMetodo, bttMostrarCliente,
+            bttMostrarMetodo, bttMostrarPedidos, bttMostrarProducto, bttNose, bttRealizarPedido, bttPepsi, bttCoca;
+
+    @FXML
+    private TextField emailCliente, metodosCliente, nombreCliente, nombreUsuario, pedidoCliente, rangoUsuario;
 
     @FXML
     private TextArea mostrarProductos;
 
+    private void mostrarAlerta(String mensaje, AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setContentText(mensaje);
+        alerta.setHeaderText(null);
+        alerta.setTitle(tipo == AlertType.ERROR ? "Error" : "Mensaje");
+        alerta.showAndWait();
+    }
 
     @FXML
     void actulizarCliente(ActionEvent event) {
-        if(!nombreCliente.getText().isEmpty() && !emailCliente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, cliente.actualizarInformacionCliente(nombreCliente.getText(), emailCliente.getText()));
+        if (!nombreCliente.getText().isEmpty() && !emailCliente.getText().isEmpty()) {
+            mostrarAlerta(cliente.actualizarInformacionCliente(nombreCliente.getText(), emailCliente.getText()), AlertType.INFORMATION);
             nombreCliente.setPromptText("Nombre: " + nombreCliente.getText());
             emailCliente.setPromptText("Email: " + emailCliente.getText());
             nombreCliente.clear();
             emailCliente.clear();
-        }
-        else{
-        JOptionPane.showMessageDialog(null, "Ingresa un Nombre y/o Email Valido", "Error!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarAlerta("Ingresa un Nombre y/o Email Válido", AlertType.ERROR);
         }
     }
 
     @FXML
     void mostrarCliente(ActionEvent event) {
-        JOptionPane.showMessageDialog(null, cliente.obtenerResumenCliente());
+        mostrarAlerta(cliente.obtenerResumenCliente(), AlertType.INFORMATION);
     }
 
     @FXML
     void mostrarPedidos(ActionEvent event) {
-        JOptionPane.showMessageDialog(null, cliente.obtenerResumenCliente());
+        mostrarAlerta(cliente.obtenerResumenCliente(), AlertType.INFORMATION);
     }
 
     @FXML
     void realizarPedido(ActionEvent event) {
-        if(!pedidoCliente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, cliente.procesarNuevoPedido(pedidoCliente.getText(), "nequi"));
+        if (!pedidoCliente.getText().isEmpty()) {
+            mostrarAlerta(cliente.procesarNuevoPedido(pedidoCliente.getText(), "nequi"), AlertType.INFORMATION);
             pedidoCliente.clear();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Ingresa un Producto Vaido", "Error!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarAlerta("Ingresa un Producto Válido", AlertType.ERROR);
         }
     }
 
-
     @FXML
     void activarMetodo(ActionEvent event) {
-        if(!metodosCliente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, cliente.activarMetodo(metodosCliente.getText()));
+        if (!metodosCliente.getText().isEmpty()) {
+            mostrarAlerta(cliente.activarMetodo(metodosCliente.getText()), AlertType.INFORMATION);
             metodosCliente.clear();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Ingresa un Metodo Vaido", "Error!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarAlerta("Ingresa un Método Válido", AlertType.ERROR);
         }
     }
 
     @FXML
     void bloquearMetodo(ActionEvent event) {
-        if(!metodosCliente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, cliente.bloquearMetodoDePago(metodosCliente.getText()));
+        if (!metodosCliente.getText().isEmpty()) {
+            mostrarAlerta(cliente.bloquearMetodoDePago(metodosCliente.getText()), AlertType.INFORMATION);
             metodosCliente.clear();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Ingresa un Metodo Vaido", "Error!!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarAlerta("Ingresa un Método Válido", AlertType.ERROR);
         }
     }
-
-    
 
     @FXML
     void mostrarMetodo(ActionEvent event) {
-        JOptionPane.showMessageDialog(null, cliente.obtenerResumenCliente());
+        mostrarAlerta(cliente.obtenerResumenCliente(), AlertType.INFORMATION);
     }
-
-
 
     @FXML
     void mostrarProducto(ActionEvent event) {
-        if(!nombreUsuario.getText().isEmpty() && !rangoUsuario.getText().isEmpty()){
+        if (!nombreUsuario.getText().isEmpty() && !rangoUsuario.getText().isEmpty()) {
             int rangoCAT = Integer.parseInt(rangoUsuario.getText());
             Usuario usuario = new Usuario(nombreUsuario.getText(), rangoCAT);
-            ProductoModelo productoTanque = new ProductoModelo("Computador", "ASUS Vivobook 2025" );
+            ProductoModelo productoTanque = new ProductoModelo("Computador", "ASUS Vivobook 2025");
             Producto proxyProducto = new ProductoProxy(productoTanque, usuario);
-            JOptionPane.showMessageDialog(null, proxyProducto.mostrarDetallesProducto());
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Ingresa un Usuario y/o Rango Valido", "Error!!", JOptionPane.ERROR_MESSAGE);
+            mostrarAlerta(proxyProducto.mostrarDetallesProducto(), AlertType.INFORMATION);
+        } else {
+            mostrarAlerta("Ingresa un Usuario y/o Rango Válido", AlertType.ERROR);
         }
     }
 
@@ -125,17 +123,14 @@ public class controladorFx {
         Productos pro3 = new Productos("Paquete Detodito", 1000, pepsico);
         Productos pro4 = new Productos("Galletas Quacker", 500, pepsico);
         Productos pro5 = new Productos("Paquete Margarita", 2000, pepsico);
-        boolean proveedorCompartido = 
-        pro1.getProveedor() == pro2.getProveedor() &&
-        pro2.getProveedor() == pro3.getProveedor() &&
-        pro3.getProveedor() == pro4.getProveedor() &&
-        pro4.getProveedor() == pro5.getProveedor();
-        String todo = pro1.toString() + "\n"+pro2.toString() + "\n"+pro3.toString() + "\n"+pro4.toString() + "\n"+pro5.toString() + "\nTodos Comparten Proveedor?: " + proveedorCompartido;
+        boolean proveedorCompartido = pro1.getProveedor() == pro2.getProveedor()
+                && pro2.getProveedor() == pro3.getProveedor()
+                && pro3.getProveedor() == pro4.getProveedor()
+                && pro4.getProveedor() == pro5.getProveedor();
+        String todo = pro1.toString() + "\n" + pro2.toString() + "\n" + pro3.toString() + "\n" + pro4.toString() + "\n"
+                + pro5.toString() + "\nTodos Comparten Proveedor?: " + proveedorCompartido;
         mostrarProductos.setText(todo);
-    
-
     }
-
 
     @FXML
     void mostrarCoca(ActionEvent event) {
@@ -146,15 +141,12 @@ public class controladorFx {
         Productos pro3 = new Productos("Agua Cielo", 1000, cocacola);
         Productos pro4 = new Productos("Hidratante PowerAde", 3500, cocacola);
         Productos pro5 = new Productos("Jugo del Valle", 2000, cocacola);
-        boolean proveedorCompartido = 
-        pro1.getProveedor() == pro2.getProveedor() &&
-        pro2.getProveedor() == pro3.getProveedor() &&
-        pro3.getProveedor() == pro4.getProveedor() &&
-        pro4.getProveedor() == pro5.getProveedor();
-        String todo = pro1.toString() + "\n"+pro2.toString() + "\n"+pro3.toString() + "\n"+pro4.toString() + "\n"+pro5.toString() + "\nTodos Comparten Proveedor?: " + proveedorCompartido;
+        boolean proveedorCompartido = pro1.getProveedor() == pro2.getProveedor()
+                && pro2.getProveedor() == pro3.getProveedor()
+                && pro3.getProveedor() == pro4.getProveedor()
+                && pro4.getProveedor() == pro5.getProveedor();
+        String todo = pro1.toString() + "\n" + pro2.toString() + "\n" + pro3.toString() + "\n" + pro4.toString() + "\n"
+                + pro5.toString() + "\nTodos Comparten Proveedor?: " + proveedorCompartido;
         mostrarProductos.setText(todo);
     }
-
-    
 }
-
